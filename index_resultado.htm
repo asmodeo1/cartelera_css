@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartelera</title>
+    <style>
+      header h1 {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #d82951;
+        font-size: 3em;
+      }
+
+      /* Película */
+      .pelicula {
+        width: 700px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+      .pelicula * {
+        /* Quitamos el margen y espaciado por defecto a todos los elementos que contenga esta clase */
+        margin: 0;
+        padding: 0;
+      }
+      .pelicula h2,
+      .pelicula h3,
+      .pelicula p {
+        border: 1px solid black;
+      }
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      .pelicula h2 {
+        background-color: #d82951;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+        font-size: x-large;
+        padding: 5px;
+        font-weight: normal;
+      }
+      .poster {
+        float: left;
+        width: 250px;
+      }
+
+      /* Información */
+      .informacion {
+        /* Si no lo ponemos también a flotar, comenzaría en el borde izquierdo de la página, y no
+        después del poster (aunque el texto si lo haría) */
+        float: left;
+        width: 450px; /* Si no le damos ancho, ocupa un 100%, con lo que aparecería debajo del poster */
+      }
+      .informacion h3 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+        font-size: medium;
+        font-weight: normal;
+        padding: 8px;
+        background-color: #29d8b0;
+      }
+      .informacion p {
+        font-family: "Courier New", Courier, monospace;
+        font-size: small;
+        padding: 5px;
+      }
+      .duracion {
+        text-align: right;
+        background-color: #29d4d8;
+        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+        color: white;
+        font-size: x-large !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Cartelera de Cine</h1>
+      </header>
+      <section class="pelicula clearfix">
+        <h2>Dune: Parte Dos</h2>
+        <div class="poster">
+          <a href="https://www.youtube.com/watch?v=esezQhsrix0"
+            ><img src="imagenes/dune.jpeg" alt="dune"
+          /></a>
+        </div>
+        <div class="informacion">
+          <h3>Género</h3>
+          <p>Acción - Aventura</p>
+          <h3>Reparto</h3>
+          <p>
+            Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler, Javier
+            Bardem
+          </p>
+          <h3>Dirección</h3>
+          <p>Denis Villeneuve</p>
+          <h3>Sipnosis</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
+            consequatur iusto autem, non necessitatibus perferendis quaerat
+            cupiditate, dolore odio sunt eius explicabo officiis reprehenderit
+            sed quae nam aperiam architecto veritatis.
+          </p>
+          <p class="duracion">166 min.</p>
+        </div>
+      </section>
+      <section class="pelicula clearfix">
+        <h2>Pobres criaturas</h2>
+        <div class="poster">
+          <a href="https://www.youtube.com/watch?v=WNfF_WA5kWY"
+            ><img src="imagenes/pobres.jpg" alt="dune"
+          /></a>
+        </div>
+        <div class="informacion">
+          <h3>Género</h3>
+          <p>Fantástica</p>
+          <h3>Reparto</h3>
+          <p>
+            Emma Stone, Mark Ruffalo, Willem Dafoe, Ramy Youssef, Christopher
+            Abbott
+          </p>
+          <h3>Dirección</h3>
+          <p>Yorgos Lanthimos</p>
+          <h3>Sipnosis</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
+            consequatur iusto autem, non necessitatibus perferendis quaerat
+            cupiditate, dolore odio sunt eius explicabo officiis reprehenderit
+            sed quae nam aperiam architecto veritatis.
+          </p>
+          <p class="duracion">141 min.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
