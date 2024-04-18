@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartelera</title>
+    <style>
+      /* Para adaptar la página web que teníamos creada a un diseño responsivo conviene:
+      - quitar todos los anchos en píxeles que tenínamos, salvo márgenes, paddings, bordes
+      o algunos otros casos concretos
+      - ponerles un width o max-width a las imágenes en porcentajes
+      - quitamos los float, clearfix o display: inline-block que pusimos para colocar
+      los elementos, aunque no hay que quitarlos todos, algunos tienen su razón de ser
+       */
+      header h1 {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #d82951;
+        font-size: 3em;
+      }
+      main {
+        /* Pensando en monitores con muchos píxeles de ancho, normalmente conviente limitar
+        el ancho de la página, ya sea en el body o en alguno de los contenedores principales */
+        max-width: 1200px;
+        /* Centramos el contenido horizontalmente */
+        margin: auto;
+      }
+
+      /* En este caso hemos usado por un grid para crear el diseño responsivo. En 
+      pantallas grandes tendremos dos columnas y en más pequeñas una */
+      .pelicula {
+        display: grid;
+        /* La segunda columna coge el triple del espacio libre disponible */
+        grid-template-columns: 1fr 3fr;
+        /* margen exterior de la película, pues row-gap es enter filas del propio grid */
+        margin-bottom: 20px;
+      }
+
+      .pelicula * {
+        /* Quitamos el margen y espaciado por defecto a todos los elementos que contenga
+         esta clase. Podríamos haberlo hecho en el selector * como en otros ejercicios */
+        margin: 0;
+        padding: 0;
+      }
+     
+      .pelicula h2 {
+        background-color: #d82951;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+        font-size: x-large;
+        padding: 5px;
+        font-weight: normal;
+        /* Que ocupe dos columnas (tres líneas) */
+        grid-column: 1 / 3; /* o grid-column: 1 / span 2; */
+      }
+      /* Como en algunos tamaños de pantalla la imagen queda más corta de alto
+      que los textos de información, hemos decidido ponerle un fondo */
+      .poster {
+        background-color: bisque  ;
+      }
+
+      .poster img {
+        /* Hacemso que el poster ocupe un 100% de la columna */
+        width: 100%;
+        /* Un elemento en línea deja unos píxeles por la derecha y debajo que puede
+        quedar mal el algunos casos. Usando display: block lo arreglamos */
+        display: block;
+      }
+      /* Si queremos que la infromación se distribuya verticalmente ocupando todo el
+      alto de la imagen, cuando esta es más alta, podemos usar un flex con un justify-content*/
+      .informacion {
+        display: flex;
+        /* Cada hijo en otra fila */
+        flex-direction: column;
+        justify-content:space-between;
+      }
+
+      .informacion h3 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+        font-size: medium;
+        font-weight: normal;
+        padding: 8px;
+        background-color: #29d8b0;
+      }
+      .informacion p {
+        font-family: "Courier New", Courier, monospace;
+        font-size: small;
+        padding: 5px;
+      }
+      .duracion {
+        text-align: right;
+        background-color: #29d4d8;
+        /* Con !important le damos prioridad en caso de misma especifidad */
+        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+        color: white;
+        font-size: x-large !important;
+      }
+      /* En ocasiones es interesante usar imágenes diferentes según el tamaño de 
+      pantalla, como en este caso, que la imagen del poster, con un ancho del 100%
+      quedaría muy alta ocupando mucho. En este caso vamos a tener dos img, uno con
+      la imagen completa y otro con una recortada, que es menos alta. Por ello 
+      ocultamos esta última por defecto y la mostraremos en pantallas más pequeñas */
+      .poster .imgp {
+        display: none;
+      }
+
+      /* De 800px para abajo seguimos con dos columnas pero ahora la segunda solo coge
+      el doble del espacio sobrante en lugar del triple, ya que el póster podría quedar
+      muy pequeño */
+      @media all and (max-width: 800px) {
+        .pelicula {
+          grid-template-columns: 1fr 2fr;
+        }
+      }
+
+      /* De 600px para abajo, usamos solo una columna */
+      @media all and (max-width: 600px) {
+        .pelicula {
+          grid-template-columns: 1fr;
+        }
+        /* No olvidarse que ahora el h2 debe ocupar 1 columna, pues antes ocupaba
+        dos, lo que haría que el gris siguiese teniendo dos columnas */
+        .pelicula h2 {
+          grid-column: 1;
+        }
+        .poster {
+          /* Tampoco queremos el color de fondo en este caso */
+          background-color: transparent;
+          margin: 10px 0;
+        }
+        /* Ponemos el poster un poco más pequeño y centrado horizontalmente */
+        .poster img {
+          width: 80%;
+          margin: auto;
+        }
+        /* La letra de los h1 y h2 más pequeña */
+        header h1 {
+          font-size: 2rem;
+        }
+        .pelicula h2 {
+          font-size: 1.5rem;
+        }
+        /* Ocultamos la imagen grande */
+        .poster .imgg {
+          display: none;
+        }
+        /* Mostramos la imagen recortada */
+        .poster .imgp {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Cartelera de Cine</h1>
+    </header>
+    <main>
+      <section class="pelicula">
+        <h2>Dune: Parte Dos</h2>
+        <div class="poster">
+          <a href="https://www.youtube.com/watch?v=esezQhsrix0"
+            ><img src="imagenes/dune.jpeg" class="imgg" alt="dune"
+          /><img src="imagenes/dunep.jpg" class="imgp" alt="dune"
+          /></a>
+        </div>
+        <div class="informacion">
+          <h3>Género</h3>
+          <p>Acción - Aventura</p>
+          <h3>Reparto</h3>
+          <p>
+            Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler, Javier
+            Bardem
+          </p>
+          <h3>Dirección</h3>
+          <p>Denis Villeneuve</p>
+          <h3>Sipnosis</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
+            consequatur iusto autem, non necessitatibus perferendis quaerat
+            cupiditate, dolore odio sunt eius explicabo officiis reprehenderit
+            sed quae nam aperiam architecto veritatis.
+          </p>
+          <p class="duracion">166 min.</p>
+        </div>
+      </section>
+      <section class="pelicula">
+        <h2>Pobres criaturas</h2>
+        <div class="poster">
+          <a href="https://www.youtube.com/watch?v=WNfF_WA5kWY"
+            ><img src="imagenes/pobresg.jpg" 
+              srcset="
+                imagenes/pobresg.jpg 800w,
+                imagenes/pobresp.jpg 400w
+              "
+              max-width="100%"
+            alt="pobres"
+          /></a>
+        </div>
+        <div class="informacion">
+          <h3>Género</h3>
+          <p>Fantástica</p>
+          <h3>Reparto</h3>
+          <p>
+            Emma Stone, Mark Ruffalo, Willem Dafoe, Ramy Youssef, Christopher
+            Abbott
+          </p>
+          <h3>Dirección</h3>
+          <p>Yorgos Lanthimos</p>
+          <h3>Sipnosis</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
+            consequatur iusto autem, non necessitatibus perferendis quaerat
+            cupiditate, dolore odio sunt eius explicabo officiis reprehenderit
+            sed quae nam aperiam architecto veritatis.
+          </p>
+          <p class="duracion">141 min.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
