@@ -7,4 +7,4 @@ Algunos de los conceptos que se tratan:
 - propiedades de colores, fondos, textos, fuentes, márgenes y espaciados
 - el selector universal *
 
-Se ha añadido una versión responsiva de la página: index_resultado responsiva.htm
+Se ha añadido una versión responsiva de la página: index_resultado_responsivo.htm
